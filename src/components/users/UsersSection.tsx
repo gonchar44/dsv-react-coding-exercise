@@ -26,7 +26,9 @@ export default function UsersSection() {
     };
 
     const query = searchText.trim().toLowerCase();
-    const filteredActiveUsers = query ? activeUsers.filter((u) => u.username.toLowerCase().includes(query)) : activeUsers;
+    const filteredActiveUsers = query
+        ? activeUsers.filter((u) => u.username.toLowerCase().includes(query))
+        : activeUsers;
     const filteredRemovedUsers = query ? removedUsers.filter((u) => u.username.toLowerCase().includes(query)) : [];
 
     return (
