@@ -1,4 +1,9 @@
 import { Avatar, Box, Button, Card, CardActions, CardContent, Chip, Typography } from "@mui/material";
+import CakeIcon from "@mui/icons-material/Cake";
+import BusinessIcon from "@mui/icons-material/Business";
+import LocationOnIcon from "@mui/icons-material/LocationOn";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { type ProcessedUser } from "../../types";
 
 type UserCardProps = {
@@ -35,26 +40,46 @@ export default function UserCard({ user, isRemoved = false, onRemove, onRestore 
                     </Typography>
                 </Box>
 
-                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1, mb: 2 }}>
-                    <Chip label={`Age ${user.age}`} size="small" />
-                    <Chip label={user.companyName} size="small" color="primary" variant="outlined" />
+                <Box sx={{ display: "flex", flexDirection: "column", gap: 1, mb: 2 }}>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                        <CakeIcon sx={{ fontSize: 16, color: "text.secondary", flexShrink: 0 }} />
+                        <Chip label={`Age ${user.age}`} size="small" />
+                    </Box>
+                    <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+                        <BusinessIcon sx={{ fontSize: 16, color: "primary.main", flexShrink: 0 }} />
+                        <Chip label={user.companyName} size="small" color="primary" variant="outlined" />
+                    </Box>
                 </Box>
 
-                <Typography variant="body2" color="text.secondary">
-                    {user.address.street}, {user.address.suite}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                    {user.address.city} · {user.address.zipcode}
-                </Typography>
+                <Box sx={{ display: "flex", alignItems: "flex-start", gap: 0.5, color: "text.secondary" }}>
+                    <LocationOnIcon sx={{ fontSize: 16, mt: "2px", flexShrink: 0 }} />
+                    <Typography variant="body2" color="text.secondary">
+                        {user.address.street}, {user.address.suite}
+                        <br />
+                        {user.address.city} · {user.address.zipcode}
+                    </Typography>
+                </Box>
             </CardContent>
 
             <CardActions sx={{ px: 2, pb: 2 }}>
                 {isRemoved ? (
-                    <Button size="small" variant="outlined" color="success" onClick={() => onRestore(user.id)}>
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        color="success"
+                        startIcon={<PersonAddIcon />}
+                        onClick={() => onRestore(user.id)}
+                    >
                         Restore
                     </Button>
                 ) : (
-                    <Button size="small" variant="outlined" color="error" onClick={() => onRemove(user.id)}>
+                    <Button
+                        size="small"
+                        variant="outlined"
+                        color="error"
+                        startIcon={<DeleteOutlineIcon />}
+                        onClick={() => onRemove(user.id)}
+                    >
                         Remove
                     </Button>
                 )}
