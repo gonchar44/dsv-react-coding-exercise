@@ -1,10 +1,7 @@
 import "./styles.css";
-import { useReducer, useState } from "react";
-import { Button, TextField } from "@mui/material";
-import users from "./data";
-import { processUsers } from "./utils/processUsers";
-import { type ProcessedUser } from "./types";
-import UserList from "./components/UserList";
+import { Box } from "@mui/material";
+import Counter from "./components/Counter";
+import UsersSection from "./components/users/UsersSection";
 
 // TODO: Remove the instructions after completing the task.
 /** Instructions
@@ -18,11 +15,11 @@ import UserList from "./components/UserList";
    ✅2.4. Sort the array (asc) by age, then by companyName
    ✅2.5. Dispatch the data to the local users state
    3. Display the users' properties using a loop in the tsx, preferably in a styled "Card" form
-   3.1. Add a "remove" button to each card - this should remove the user from the state
-   3.2. Store the removed users in a new state instance
-   3.3. Using the second input, add a method to search for a user's username with the onChange event
-   3.4. The removed users should also be found if the input is being used to search for a username
-   3.5. In the case where a removed user is shown during a search, there should be a "restore" button, which would insert the removed user back into the users array
+   ✅3.1. Add a "remove" button to each card - this should remove the user from the state
+   ✅3.2. Store the removed users in a new state instance
+   ✅3.3. Using the second input, add a method to search for a user's username with the onChange event
+   ✅3.4. The removed users should also be found if the input is being used to search for a username
+   ✅3.5. In the case where a removed user is shown during a search, there should be a "restore" button, which would insert the removed user back into the users array
    4. Extend the reducer:
    4.1. Count must always be >= 0, in all cases
    4.2. Add a case to increment count with a random number, between 1 and 10
@@ -34,41 +31,11 @@ import UserList from "./components/UserList";
    5. Provide the link to your forked repo with your answers
    */
 
-type State = { count: number };
-type Action = { type: "increment" | "decrement" };
-
-function reducer(state: State, action: Action) {
-    switch (action.type) {
-        case "increment":
-            return { count: state.count + 1 };
-        case "decrement":
-            return { count: state.count - 1 };
-        default:
-            throw new Error();
-    }
-}
-
 export default function App() {
-    const [processedUsers, _setProcessedUsers] = useState<ProcessedUser[]>(() => processUsers(users));
-    const [_numberInput] = useState(0);
-    const [_text] = useState("");
-
-    const [countState, dispatch] = useReducer(reducer, { count: 0 });
-
     return (
-        <div className="App">
-            <p style={{ marginBottom: 0 }}>Count: {countState.count}</p>
-            <TextField defaultValue={_numberInput} type="number" style={{ display: "block" }} />
-            <Button variant="contained" onClick={() => dispatch({ type: "decrement" })}>
-                -
-            </Button>
-            <Button variant="contained" onClick={() => dispatch({ type: "increment" })}>
-                +
-            </Button>
-            <p style={{ marginBottom: 0, marginTop: 30 }}>Search for a user</p>
-            <TextField defaultValue={_text} style={{ display: "block", margin: "auto" }} />
-
-            <UserList users={processedUsers} onRemove={() => {}} />
-        </div>
+        <Box sx={{ maxWidth: 1100, mx: "auto", px: 3, py: 4, display: "flex", flexDirection: "column", gap: 5 }}>
+            <Counter />
+            <UsersSection />
+        </Box>
     );
 }
