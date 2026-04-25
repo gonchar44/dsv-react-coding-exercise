@@ -1,18 +1,22 @@
 import "./styles.css";
 import { useReducer, useState } from "react";
 import { Button, TextField } from "@mui/material";
+import users from "./data";
+import { processUsers } from "./utils/processUsers";
+import { type ProcessedUser } from "./types";
+import UserList from "./components/UserList";
 
 // TODO: Remove the instructions after completing the task.
 /** Instructions
-   0. Fork this codesandbox and sync it with your github 
-   1. import users data from data.ts
-   1.1. Utilize TypeScript in your implementation
+   ✅0. Fork this codesandbox and sync it with your github
+   ✅1. import users data from data.ts
+   ✅1.1. Utilize TypeScript in your implementation
    2. On load:
-   2.1. Filter the users data array to only include users where age >= 18
-   2.2. Map the users data array to only include username, address, age and companyName
-   2.3. Add a new ID to each user object, which should consist of a randomized sequence (6 characters) of the following: {ABCDEF123456}
-   2.4. Sort the array (asc) by age, then by companyName
-   2.5. Dispatch the data to the local users state
+   ✅2.1. Filter the users data array to only include users where age >= 18
+   ✅2.2. Map the users data array to only include username, address, age and companyName
+   ✅2.3. Add a new ID to each user object, which should consist of a randomized sequence (6 characters) of the following: {ABCDEF123456}
+   ✅2.4. Sort the array (asc) by age, then by companyName
+   ✅2.5. Dispatch the data to the local users state
    3. Display the users' properties using a loop in the tsx, preferably in a styled "Card" form
    3.1. Add a "remove" button to each card - this should remove the user from the state
    3.2. Store the removed users in a new state instance
@@ -45,9 +49,10 @@ function reducer(state: State, action: Action) {
 }
 
 export default function App() {
-    const [_users] = useState([]);
+    const [processedUsers, _setProcessedUsers] = useState<ProcessedUser[]>(() => processUsers(users));
     const [_numberInput] = useState(0);
     const [_text] = useState("");
+
     const [countState, dispatch] = useReducer(reducer, { count: 0 });
 
     return (
@@ -62,6 +67,8 @@ export default function App() {
             </Button>
             <p style={{ marginBottom: 0, marginTop: 30 }}>Search for a user</p>
             <TextField defaultValue={_text} style={{ display: "block", margin: "auto" }} />
+
+            <UserList users={processedUsers} onRemove={() => {}} />
         </div>
     );
 }
