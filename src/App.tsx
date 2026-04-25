@@ -1,12 +1,13 @@
 import "./styles.css";
 import { useReducer, useState } from "react";
 import { Button, TextField } from "@mui/material";
+import users, { type RawUser } from "./data";
 
 // TODO: Remove the instructions after completing the task.
 /** Instructions
-   0. Fork this codesandbox and sync it with your github 
-   1. import users data from data.ts
-   1.1. Utilize TypeScript in your implementation
+   0. ✅Fork this codesandbox and sync it with your github
+   1. ✅import users data from data.ts
+   1.1. ✅Utilize TypeScript in your implementation
    2. On load:
    2.1. Filter the users data array to only include users where age >= 18
    2.2. Map the users data array to only include username, address, age and companyName
@@ -45,7 +46,7 @@ function reducer(state: State, action: Action) {
 }
 
 export default function App() {
-    const [_users] = useState([]);
+    const [_users] = useState<RawUser[]>(users);
     const [_numberInput] = useState(0);
     const [_text] = useState("");
     const [countState, dispatch] = useReducer(reducer, { count: 0 });
