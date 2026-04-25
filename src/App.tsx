@@ -1,5 +1,5 @@
 import "./styles.css";
-import { useEffect, useReducer, useState } from "react";
+import { useReducer, useState } from "react";
 import { Button, TextField } from "@mui/material";
 import users from "./data";
 import { processUsers } from "./utils/processUsers";
@@ -49,13 +49,9 @@ function reducer(state: State, action: Action) {
 }
 
 export default function App() {
-    const [processedUsers, setProcessedUsers] = useState<ProcessedUser[]>([]);
+    const [processedUsers, _setProcessedUsers] = useState<ProcessedUser[]>(() => processUsers(users));
     const [_numberInput] = useState(0);
     const [_text] = useState("");
-
-    useEffect(() => {
-        setProcessedUsers(processUsers(users));
-    }, []);
 
     const [countState, dispatch] = useReducer(reducer, { count: 0 });
 
