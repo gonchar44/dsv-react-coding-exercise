@@ -7,7 +7,9 @@ const ID_LENGTH = 6;
 function generateId(existingIds: Set<string>): string {
     let id: string;
     do {
-        id = Array.from({ length: ID_LENGTH }, () => ID_CHARSET[Math.floor(Math.random() * ID_CHARSET.length)]).join("");
+        id = Array.from({ length: ID_LENGTH }, () => ID_CHARSET[Math.floor(Math.random() * ID_CHARSET.length)]).join(
+            "",
+        );
     } while (existingIds.has(id));
     existingIds.add(id);
     return id;
