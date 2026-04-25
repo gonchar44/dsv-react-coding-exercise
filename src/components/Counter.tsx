@@ -63,12 +63,22 @@ export default function Counter() {
                     +1
                 </Button>
                 <Tooltip title="Adds a random number between 1 and 10">
-                    <Button variant="outlined" size="small" startIcon={<CasinoIcon />} onClick={() => dispatch({ type: "increment-random" })}>
+                    <Button
+                        variant="outlined"
+                        size="small"
+                        startIcon={<CasinoIcon />}
+                        onClick={() => dispatch({ type: "increment-random" })}
+                    >
                         Random
                     </Button>
                 </Tooltip>
                 <Tooltip title="Jumps to the next odd number (e.g. 4 → 5, 5 → 7)">
-                    <Button variant="outlined" size="small" startIcon={<AutoFixHighIcon />} onClick={() => dispatch({ type: "increment-odd" })}>
+                    <Button
+                        variant="outlined"
+                        size="small"
+                        startIcon={<AutoFixHighIcon />}
+                        onClick={() => dispatch({ type: "increment-odd" })}
+                    >
                         Next Odd
                     </Button>
                 </Tooltip>
@@ -114,7 +124,13 @@ export default function Counter() {
 
             <Divider sx={{ mb: 2 }} />
 
-            <Button variant="outlined" color="error" size="small" startIcon={<RestartAltIcon />} onClick={() => dispatch({ type: "reset" })}>
+            <Button
+                variant="outlined"
+                color="error"
+                size="small"
+                startIcon={<RestartAltIcon />}
+                onClick={() => dispatch({ type: "reset" })}
+            >
                 Reset
             </Button>
         </Box>
