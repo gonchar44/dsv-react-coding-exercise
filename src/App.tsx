@@ -21,13 +21,13 @@ import UsersSection from "./components/users/UsersSection";
    ✅3.4. The removed users should also be found if the input is being used to search for a username
    ✅3.5. In the case where a removed user is shown during a search, there should be a "restore" button, which would insert the removed user back into the users array
    4. Extend the reducer:
-   4.1. Count must always be >= 0, in all cases
-   4.2. Add a case to increment count with a random number, between 1 and 10
-   4.3. Add a case to increment to the nearest odd number, if already odd - increment to next odd
-   4.4. Add a case to decrease the count by the input of the first textfield
-   4.5. Add a case to reset the count
-   4.6. Add buttons to said cases
-   4.7. Add styling using MUI
+   ✅4.1. Count must always be >= 0, in all cases
+   ✅4.2. Add a case to increment count with a random number, between 1 and 10
+   ✅4.3. Add a case to increment to the nearest odd number, if already odd - increment to next odd
+   ✅4.4. Add a case to decrease the count by the input of the first textfield
+   ✅4.5. Add a case to reset the count
+   ✅4.6. Add buttons to said cases
+   ✅4.7. Add styling using MUI
    5. Provide the link to your forked repo with your answers
    */
 
