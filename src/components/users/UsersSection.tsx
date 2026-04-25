@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Box, Divider, InputAdornment, TextField, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import GroupIcon from "@mui/icons-material/Group";
 import users from "../../data";
 import { processUsers } from "../../utils/processUsers";
 import { type ProcessedUser } from "../../types";
@@ -33,9 +34,12 @@ export default function UsersSection() {
 
     return (
         <Box>
-            <Typography variant="h5" fontWeight={700} gutterBottom>
-                Users
-            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1, mb: 2 }}>
+                <GroupIcon color="primary" />
+                <Typography variant="h5" fontWeight={700}>
+                    Users
+                </Typography>
+            </Box>
 
             <TextField
                 value={searchText}
