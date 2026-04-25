@@ -2,6 +2,7 @@ import "./styles.css";
 import { useReducer, useState } from "react";
 import { Button, TextField } from "@mui/material";
 
+// TODO: Remove the instructions after completing the task.
 /** Instructions
    0. Fork this codesandbox and sync it with your github 
    1. import users data from data.ts
@@ -29,48 +30,38 @@ import { Button, TextField } from "@mui/material";
    5. Provide the link to your forked repo with your answers
    */
 
-function reducer(state, action) {
-  switch (action.type) {
-    case "increment":
-      return { count: state.count + 1 };
-    case "decrement":
-      return { count: state.count - 1 };
-    default:
-      throw new Error();
-  }
+type State = { count: number };
+type Action = { type: "increment" | "decrement" };
+
+function reducer(state: State, action: Action) {
+    switch (action.type) {
+        case "increment":
+            return { count: state.count + 1 };
+        case "decrement":
+            return { count: state.count - 1 };
+        default:
+            throw new Error();
+    }
 }
 
 export default function App() {
-  const [users] = useState([]);
-  const [numberInput] = useState(0);
-  const [text] = useState("");
-  const [countState, dispatch] = useReducer(reducer, { count: 0 });
+    const [_users] = useState([]);
+    const [_numberInput] = useState(0);
+    const [_text] = useState("");
+    const [countState, dispatch] = useReducer(reducer, { count: 0 });
 
-  return (
-    <div className="App">
-      <p style={{ marginBottom: 0 }}>Count: {countState.count}</p>
-      <TextField
-        defaultValue={numberInput}
-        type="number"
-        style={{ display: "block" }}
-      />
-      <Button
-        variant="contained"
-        onClick={() => dispatch({ type: "decrement" })}
-      >
-        -
-      </Button>
-      <Button
-        variant="contained"
-        onClick={() => dispatch({ type: "increment" })}
-      >
-        +
-      </Button>
-      <p style={{ marginBottom: 0, marginTop: 30 }}>Search for a user</p>
-      <TextField
-        defaultValue={text}
-        style={{ display: "block", margin: "auto" }}
-      />
-    </div>
-  );
+    return (
+        <div className="App">
+            <p style={{ marginBottom: 0 }}>Count: {countState.count}</p>
+            <TextField defaultValue={_numberInput} type="number" style={{ display: "block" }} />
+            <Button variant="contained" onClick={() => dispatch({ type: "decrement" })}>
+                -
+            </Button>
+            <Button variant="contained" onClick={() => dispatch({ type: "increment" })}>
+                +
+            </Button>
+            <p style={{ marginBottom: 0, marginTop: 30 }}>Search for a user</p>
+            <TextField defaultValue={_text} style={{ display: "block", margin: "auto" }} />
+        </div>
+    );
 }
